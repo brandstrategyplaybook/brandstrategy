@@ -22,7 +22,14 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', '@nuxt/ui', '@nuxtjs/color-mode'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/prismic',
+    '@nuxt/fonts',
+    '@nuxt/ui',
+    '@nuxtjs/color-mode',
+    '@nuxthub/core',
+  ],
 
   colorMode: {
     preference: 'system',   // default on first visit
