@@ -22,7 +22,28 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxtjs/tailwindcss', '@nuxt/fonts'],
+  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', '@nuxt/ui', '@nuxtjs/color-mode'],
+
+  colorMode: {
+    preference: 'system',   // default on first visit
+    fallback: 'dark',
+    classSuffix: ''        // <html class="light"> or <html class="dark">
+  },
+
+  fonts: {
+    families: [
+      {
+        name: 'Poppins',
+        provider: 'google',
+        weights: [400, 500, 700, 800, 900], // explicitly load the bold weights you need
+      },
+      {
+        name: 'Inter',
+        provider: 'google',
+        weights: [400, 500, 700, 800, 900],
+      }
+    ]
+  },
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,

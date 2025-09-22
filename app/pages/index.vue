@@ -15,7 +15,7 @@ useHead({
 <template>
   <SliceZone
     wrapper="main"
-    :slices="page?.data.slices ?? []"
+    :slices="page?.data.slices ?? []" 
     :components="components"
   />
 </template>
