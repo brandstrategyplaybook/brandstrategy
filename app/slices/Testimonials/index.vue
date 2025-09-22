@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
+import gsap from 'gsap';
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -14,7 +15,19 @@ defineProps(
 
 // Use repeatable items if present; otherwise fall back to a group field in primary.
 // const items = slice.items?.length ? slice.items : (slice.primary?.testimonial || [])
-
+onMounted(() => {
+  const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+  tl
+    .fromTo('.testimonials__title',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 1 },
+      '+=2' // slight delay after hero finishes
+    )
+    .fromTo('.testimonials__card',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }
+    )
+})
 </script>
 
 <template>
@@ -22,12 +35,13 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-	<h3 class="font-poppins text-custom-black text-center mb-8 dark:text-white text-xl md:text-3xl font-bold">{{ slice.primary.heading }}</h3>
+	<h3 class="font-poppins text-custom-black text-center mb-8 dark:text-white text-xl md:text-3xl font-bold testimonials__title">{{ slice.primary.heading }}</h3>
 
 	<UCarousel
 		:items="slice.primary?.testimonial || []"
 		arrows
 		dots
+		class="testimonials__card"
 		v-slot="{ item, index }"
 		:ui="{ item: 'w-full md:basis-1/2' }"
 		>

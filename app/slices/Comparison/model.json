@@ -1,0 +1,119 @@
+{
+  "id": "comparison",
+  "type": "SharedSlice",
+  "name": "Comparison",
+  "description": "Comparison",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "before": {
+          "type": "Group",
+          "config": {
+            "label": "Before",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "after": {
+          "type": "Group",
+          "config": {
+            "label": "After",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "secondary",
+      "name": "Secondary",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "before": {
+          "type": "Group",
+          "config": {
+            "label": "Before",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "after": {
+          "type": "Group",
+          "config": {
+            "label": "After",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

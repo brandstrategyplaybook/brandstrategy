@@ -69,7 +69,11 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type PageDocumentDataSlicesSlice = TestimonialsSlice | HeroSlice;
+type PageDocumentDataSlicesSlice =
+  | StepsSlice
+  | ComparisonSlice
+  | TestimonialsSlice
+  | HeroSlice;
 
 /**
  * Content for Page documents
@@ -184,6 +188,193 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = PageDocument | SettingsDocument;
+
+/**
+ * Item in *Comparison → Default → Primary → Before*
+ */
+export interface ComparisonSliceDefaultPrimaryBeforeItem {
+  /**
+   * Name List field in *Comparison → Default → Primary → Before*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.before[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → Default → Primary → After*
+ */
+export interface ComparisonSliceDefaultPrimaryAfterItem {
+  /**
+   * Name List field in *Comparison → Default → Primary → After*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.after[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → Secondary → Primary → Before*
+ */
+export interface ComparisonSliceSecondaryPrimaryBeforeItem {
+  /**
+   * Name List field in *Comparison → Secondary → Primary → Before*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.before[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → Secondary → Primary → After*
+ */
+export interface ComparisonSliceSecondaryPrimaryAfterItem {
+  /**
+   * Name List field in *Comparison → Secondary → Primary → After*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.after[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Comparison → Default → Primary*
+ */
+export interface ComparisonSliceDefaultPrimary {
+  /**
+   * Heading field in *Comparison → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * CTA field in *Comparison → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Before field in *Comparison → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.before[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  before: prismic.GroupField<Simplify<ComparisonSliceDefaultPrimaryBeforeItem>>;
+
+  /**
+   * After field in *Comparison → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.default.primary.after[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  after: prismic.GroupField<Simplify<ComparisonSliceDefaultPrimaryAfterItem>>;
+}
+
+/**
+ * Default variation for Comparison Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ComparisonSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ComparisonSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Comparison → Secondary → Primary*
+ */
+export interface ComparisonSliceSecondaryPrimary {
+  /**
+   * Heading field in *Comparison → Secondary → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Before field in *Comparison → Secondary → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.before[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  before: prismic.GroupField<
+    Simplify<ComparisonSliceSecondaryPrimaryBeforeItem>
+  >;
+
+  /**
+   * After field in *Comparison → Secondary → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.after[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  after: prismic.GroupField<Simplify<ComparisonSliceSecondaryPrimaryAfterItem>>;
+}
+
+/**
+ * Secondary variation for Comparison Slice
+ *
+ * - **API ID**: `secondary`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ComparisonSliceSecondary = prismic.SharedSliceVariation<
+  "secondary",
+  Simplify<ComparisonSliceSecondaryPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Comparison*
+ */
+type ComparisonSliceVariation =
+  | ComparisonSliceDefault
+  | ComparisonSliceSecondary;
+
+/**
+ * Comparison Shared Slice
+ *
+ * - **API ID**: `comparison`
+ * - **Description**: Comparison
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ComparisonSlice = prismic.SharedSlice<
+  "comparison",
+  ComparisonSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Full Hero → Primary*
@@ -322,6 +513,205 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSimpleHero;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *Pricing → Default → Primary → First Column*
+ */
+export interface PricingSliceDefaultPrimaryFirstColumnItem {
+  /**
+   * Badge field in *Pricing → Default → Primary → First Column*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.first_column[].badge
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  badge: prismic.KeyTextField;
+
+  /**
+   * Price field in *Pricing → Default → Primary → First Column*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.first_column[].price
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  price: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Pricing → Default → Primary*
+ */
+export interface PricingSliceDefaultPrimary {
+  /**
+   * Heading field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Text field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * First Column field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.first_column[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  first_column: prismic.GroupField<
+    Simplify<PricingSliceDefaultPrimaryFirstColumnItem>
+  >;
+}
+
+/**
+ * Default variation for Pricing Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PricingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PricingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Pricing*
+ */
+type PricingSliceVariation = PricingSliceDefault;
+
+/**
+ * Pricing Shared Slice
+ *
+ * - **API ID**: `pricing`
+ * - **Description**: Pricing
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PricingSlice = prismic.SharedSlice<
+  "pricing",
+  PricingSliceVariation
+>;
+
+/**
+ * Item in *Steps → Default → Primary → Tiles*
+ */
+export interface StepsSliceDefaultPrimaryTilesItem {
+  /**
+   * SVG field in *Steps → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.tiles[].svg
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  svg: prismic.KeyTextField;
+
+  /**
+   * Step Order field in *Steps → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.tiles[].step_order
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  step_order: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Steps → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.tiles[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Text field in *Steps → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.tiles[].text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Steps → Default → Primary*
+ */
+export interface StepsSliceDefaultPrimary {
+  /**
+   * Heading field in *Steps → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Text field in *Steps → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tiles field in *Steps → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.tiles[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tiles: prismic.GroupField<Simplify<StepsSliceDefaultPrimaryTilesItem>>;
+}
+
+/**
+ * Default variation for Steps Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StepsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StepsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Steps*
+ */
+type StepsSliceVariation = StepsSliceDefault;
+
+/**
+ * Steps Shared Slice
+ *
+ * - **API ID**: `steps`
+ * - **Description**: Steps
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StepsSlice = prismic.SharedSlice<"steps", StepsSliceVariation>;
+
+/**
  * Item in *Testimonials → Default → Primary → Testimonial*
  */
 export interface TestimonialsSliceDefaultPrimaryTestimonialItem {
@@ -450,12 +840,32 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      ComparisonSlice,
+      ComparisonSliceDefaultPrimaryBeforeItem,
+      ComparisonSliceDefaultPrimaryAfterItem,
+      ComparisonSliceDefaultPrimary,
+      ComparisonSliceSecondaryPrimaryBeforeItem,
+      ComparisonSliceSecondaryPrimaryAfterItem,
+      ComparisonSliceSecondaryPrimary,
+      ComparisonSliceVariation,
+      ComparisonSliceDefault,
+      ComparisonSliceSecondary,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceSimpleHeroPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceSimpleHero,
+      PricingSlice,
+      PricingSliceDefaultPrimaryFirstColumnItem,
+      PricingSliceDefaultPrimary,
+      PricingSliceVariation,
+      PricingSliceDefault,
+      StepsSlice,
+      StepsSliceDefaultPrimaryTilesItem,
+      StepsSliceDefaultPrimary,
+      StepsSliceVariation,
+      StepsSliceDefault,
       TestimonialsSlice,
       TestimonialsSliceDefaultPrimaryTestimonialItem,
       TestimonialsSliceDefaultPrimary,

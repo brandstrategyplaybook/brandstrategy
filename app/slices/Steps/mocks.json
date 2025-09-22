@@ -1,0 +1,61 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "fresh",
+				"type": "Text"
+			},
+			"tiles": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"step_order",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "music",
+									"type": "Text"
+								}
+							],
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "toy",
+									"type": "Text"
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "stomach",
+									"type": "Text"
+								}
+							],
+							[
+								"svg",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "tall",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "away",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

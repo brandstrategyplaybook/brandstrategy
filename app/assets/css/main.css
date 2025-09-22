@@ -43,7 +43,47 @@
     background-position: -500px -1000px, top right;
     background-size: auto, auto;
 }
- 
+
+@utility bg-card-comparison {  
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.12) 100%
+    );
+}
+
+@utility light-bg-card-comparison {
+    background: linear-gradient(
+    to right,
+    #FFF9FF 0%,
+    #FEFCFE 100%
+    );
+    @variant dark {
+        background-image: none;
+        background-color: transparent;
+    }
+}
+
+@utility light-bg-card-steps {
+    background: linear-gradient(to bottom, #FAF7FF 0%, #FFFFFF 100%);
+    @variant dark {
+        background-image: none;
+        background-color: transparent;
+    }
+}
+
+@utility variation-bg-card-comparison {
+    background: linear-gradient(
+    to right,
+    #F1FDFF 0%,
+    #FEFCFE 100%
+    );
+    @variant dark {
+        background-image: none;
+        background-color: transparent;
+    }
+}
+
 @utility light-testimonial {
     background: linear-gradient(90deg, #D9EDFF 39%, rgba(44,80,80,.18) 100%);
     @variant dark {

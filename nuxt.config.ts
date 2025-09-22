@@ -52,6 +52,13 @@ export default defineNuxtConfig({
     ]
   },
 
+  icon: {
+    customCollections: [{
+      prefix: 'custom',
+      dir: './app/assets/icons'
+    }]
+  },
+
   prismic: {
     endpoint: apiEndpoint || repositoryName,
     preview: '/api/preview',

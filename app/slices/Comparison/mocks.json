@@ -1,0 +1,112 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "port",
+				"type": "Text"
+			},
+			"cta": {
+				"key": "a39e25a9-8b76-4aaa-a1de-60bc4053fb09",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "read"
+				}
+			},
+			"before": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name_list",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "goes",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"after": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name_list",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "along",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "secondary",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "range",
+				"type": "Text"
+			},
+			"before": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name_list",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "measure",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"after": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name_list",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "smallest",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

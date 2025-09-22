@@ -27,6 +27,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "steps": {
+              "type": "SharedSlice"
+            },
+            "comparison": {
+              "type": "SharedSlice"
+            },
             "testimonials": {
               "type": "SharedSlice"
             },

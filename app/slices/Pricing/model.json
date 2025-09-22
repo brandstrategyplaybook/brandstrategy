@@ -1,0 +1,56 @@
+{
+  "id": "pricing",
+  "type": "SharedSlice",
+  "name": "Pricing",
+  "description": "Pricing",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "text": {
+          "type": "Text",
+          "config": {
+            "label": "Text",
+            "placeholder": ""
+          }
+        },
+        "first_column": {
+          "type": "Group",
+          "config": {
+            "label": "First Column",
+            "repeat": true,
+            "fields": {
+              "badge": {
+                "type": "Text",
+                "config": {
+                  "label": "Badge",
+                  "placeholder": ""
+                }
+              },
+              "price": {
+                "type": "Text",
+                "config": {
+                  "label": "Price",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
