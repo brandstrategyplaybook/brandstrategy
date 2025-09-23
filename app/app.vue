@@ -20,6 +20,8 @@ useSeoMeta({
         <div class="max-w-7xl mx-auto px-4">
             <AppHeader :settings="settings" />
             <NuxtPage />
+            <Pricing />
+            <Money/>
             <AppFooter/>
         </div>
     </div>

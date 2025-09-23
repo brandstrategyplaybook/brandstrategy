@@ -52,6 +52,16 @@
     );
 }
 
+@utility light-money-back-bg {
+    background: linear-gradient(to bottom, rgba(193, 222, 253, 0.2), rgba(255, 179, 235, 0.2));
+}
+
+@utility pricing-bg-card {
+    background-image: url(/shadows/left-shadow.svg), url(/shadows/right-shadow.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: -150px -100px, top right;
+    background-size: auto, auto;
+}
 @utility light-bg-card-comparison {
     background: linear-gradient(
     to right,
@@ -91,9 +101,11 @@
         background-color: transparent;
     }
 }
+
 @utility dark-testimonial {
     background: linear-gradient(90deg, #1E2750 39%, #131D48 100%);
 }
+
 @utility bg-figma-soft {
     background-image: linear-gradient(90deg, #F3F8FF 0%, #FAF3FC 100%);
     @variant dark {
@@ -101,7 +113,6 @@
         background-color: transparent;
     }
 }
-
   
 @media (max-width: 768px) { /* Tailwind 'sm' breakpoint */
     .glow {
