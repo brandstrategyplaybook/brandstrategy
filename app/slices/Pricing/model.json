@@ -26,27 +26,79 @@
             "placeholder": ""
           }
         },
+        "badge": {
+          "type": "Text",
+          "config": {
+            "label": "Badge",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "Price",
+            "placeholder": ""
+          }
+        },
+        "subheading": {
+          "type": "Text",
+          "config": {
+            "label": "Subheading",
+            "placeholder": ""
+          }
+        },
         "first_column": {
           "type": "Group",
           "config": {
             "label": "First Column",
             "repeat": true,
             "fields": {
-              "badge": {
+              "text": {
                 "type": "Text",
                 "config": {
-                  "label": "Badge",
-                  "placeholder": ""
-                }
-              },
-              "price": {
-                "type": "Text",
-                "config": {
-                  "label": "Price",
+                  "label": "Text",
                   "placeholder": ""
                 }
               }
             }
+          }
+        },
+        "button": {
+          "type": "Link",
+          "config": {
+            "label": "Button",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "second_column_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Second Column Heading",
+            "placeholder": ""
+          }
+        },
+        "second_column_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Second Column Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "second_button": {
+          "type": "Link",
+          "config": {
+            "label": "Second Button ",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

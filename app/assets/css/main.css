@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+html {
+    scroll-behavior: smooth !important;
+}
+
 @theme {
     --font-inter: 'Inter', sans-serif;
     --font-poppins: 'Poppins', sans-serif;
@@ -16,7 +20,7 @@
 }
 .buttonLink {
     @apply relative inline-flex h-fit w-fit rounded-[8px] px-4 py-3;
-    @apply bg-brand-blue text-white transition-colors hover:text-black;
+    @apply bg-brand-blue text-white transition-colors;
 } 
 
 @utility bg-brand-gradient {

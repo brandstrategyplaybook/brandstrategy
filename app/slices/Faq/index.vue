@@ -12,46 +12,43 @@ const props = defineProps(
 )
 
 // convenience alias
-const rows = computed(() => props.slice.primary.accordion ?? [])
+const items: AccordionItem[] = computed(() => props.slice.primary.accordion ?? [])
 </script>
 
 <template>
+ <Money/>
   <section
     :data-slice-type="props.slice.slice_type"
     :data-slice-variation="props.slice.variation"
-    class="py-10"
+	class="my-20"
   >
-    <h2 class="mb-6 text-2xl font-semibold">{{ props.slice.primary.heading }}</h2>
 
-    <!-- Use items as slot to keep RichText -->
-    <UAccordion multiple>
-      <UAccordionItem
-        v-for="(item, i) in rows"
-        :key="i"
-        class="border-b border-white/10 py-3"
-      >
-        <!-- Custom label with left index + title -->
-        <template #label>
-          <div class="flex items-center gap-3">
-            <span class="w-8 shrink-0 text-sm font-medium opacity-60">
-              {{ String(i + 1).padStart(2, '0') }}
-            </span>
-            <span class="text-base font-medium">
-              {{ item.title }}
-            </span>
-          </div>
-        </template>
+  	<h2 class="font-poppins text-custom-black mb-5 text-center dark:text-white text-xl md:text-3xl font-bold">{{ slice.primary.heading }}</h2>
 
-        <!-- Fixed trailing icon (plus). If you want plus/minus toggle, see note below -->
-        <template #trailing>
-          <UIcon name="i-lucide-plus" class="size-5 opacity-70" />
-        </template>
+    <UAccordion
+	  :items="items"
+	  trailingIcon='i-lucide-plus'
+	  class="bg-gradient-to-r from-[#DCEDFE] to-[#EEE9FA] dark:bg-[#6d6d6d0d] dark:bg-none w-full m-auto rounded-2xl pt-8 pb-5 px-5"
+	  :ui="{
+		item: 'bg-white/60 dark:bg-white/5 rounded-xl px-4 md:px-6 mb-4 ',
+		trailingIcon: 'text-brand-blue dark:text-primary',
+	   }">
+		<template #default="{ item, index }">
+			<div class="flex items-center gap-3 font-poppins">
+				<span class="text-brand-blue text-base md:text-base py-2 dark:text-primary">
+					{{ String(index + 1).padStart(2, '0') }}
+				</span>
+				<h3 class="font-poppins text-base md:text-lg text-custom-black dark:text-white/60 font-medium">{{ item.title ?? item.label }}</h3>
+			</div>
+		</template>
 
-        <!-- Answer -->
-        <div class="pt-3 pl-11"> <!-- left padding lines up with index -->
-          <PrismicRichText :field="item.text" />
-        </div>
-      </UAccordionItem>
-    </UAccordion>
+		<template #body="{ item }">
+			<div class="py-4 mt-2 border-t border-t-[#ebe5e5] dark:border-t-[#535252]">
+				<PrismicRichText :field="item.text" wrapper="p" class="text-[#2E3754] font-inter text-sm dark:text-white"/>
+			</div>
+		</template>
+	</UAccordion>
+
+      
   </section>
 </template>

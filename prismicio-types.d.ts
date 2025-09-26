@@ -70,6 +70,9 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type PageDocumentDataSlicesSlice =
+  | PricingSlice
+  | LongParagraphSlice
+  | FaqSlice
   | StepsSlice
   | ComparisonSlice
   | TestimonialsSlice
@@ -113,6 +116,71 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type PrivacyPolicyDocumentDataSlicesSlice = LongParagraphSlice | HeroSlice;
+
+/**
+ * Content for Privacy Policy documents
+ */
+interface PrivacyPolicyDocumentData {
+  /**
+   * Slice Zone field in *Privacy Policy*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacy_policy.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<PrivacyPolicyDocumentDataSlicesSlice> /**
+   * Meta Title field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: privacy_policy.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: privacy_policy.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Privacy Policy*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacy_policy.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Privacy Policy document from Prismic
+ *
+ * - **API ID**: `privacy_policy`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PrivacyPolicyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PrivacyPolicyDocumentData>,
+    "privacy_policy",
+    Lang
+  >;
 
 /**
  * Content for Settings documents
@@ -187,7 +255,10 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | PageDocument
+  | PrivacyPolicyDocument
+  | SettingsDocument;
 
 /**
  * Item in *Comparison → Default → Primary → Before*
@@ -244,6 +315,21 @@ export interface ComparisonSliceSecondaryPrimaryAfterItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: comparison.secondary.primary.after[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → Simple Text → Primary → Before*
+ */
+export interface ComparisonSliceSimpleTextPrimaryBeforeItem {
+  /**
+   * Name List field in *Comparison → Simple Text → Primary → Before*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.simpleText.primary.before[].name_list
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   name_list: prismic.KeyTextField;
@@ -322,6 +408,16 @@ export interface ComparisonSliceSecondaryPrimary {
   heading: prismic.KeyTextField;
 
   /**
+   * First Column Heading field in *Comparison → Secondary → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.first_column_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  first_column_heading: prismic.KeyTextField;
+
+  /**
    * Before field in *Comparison → Secondary → Primary*
    *
    * - **Field Type**: Group
@@ -332,6 +428,16 @@ export interface ComparisonSliceSecondaryPrimary {
   before: prismic.GroupField<
     Simplify<ComparisonSliceSecondaryPrimaryBeforeItem>
   >;
+
+  /**
+   * Second Column Heading field in *Comparison → Secondary → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.secondary.primary.second_column_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  second_column_heading: prismic.KeyTextField;
 
   /**
    * After field in *Comparison → Secondary → Primary*
@@ -358,11 +464,72 @@ export type ComparisonSliceSecondary = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Comparison → Simple Text → Primary*
+ */
+export interface ComparisonSliceSimpleTextPrimary {
+  /**
+   * First Column Heading field in *Comparison → Simple Text → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.simpleText.primary.first_column_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  first_column_heading: prismic.KeyTextField;
+
+  /**
+   * Before field in *Comparison → Simple Text → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.simpleText.primary.before[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  before: prismic.GroupField<
+    Simplify<ComparisonSliceSimpleTextPrimaryBeforeItem>
+  >;
+
+  /**
+   * Second Column Heading field in *Comparison → Simple Text → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.simpleText.primary.second_column_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  second_column_heading: prismic.KeyTextField;
+
+  /**
+   * Text field in *Comparison → Simple Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.simpleText.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Simple Text variation for Comparison Slice
+ *
+ * - **API ID**: `simpleText`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ComparisonSliceSimpleText = prismic.SharedSliceVariation<
+  "simpleText",
+  Simplify<ComparisonSliceSimpleTextPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Comparison*
  */
 type ComparisonSliceVariation =
   | ComparisonSliceDefault
-  | ComparisonSliceSecondary;
+  | ComparisonSliceSecondary
+  | ComparisonSliceSimpleText;
 
 /**
  * Comparison Shared Slice
@@ -504,6 +671,16 @@ export interface HeroSliceDefaultPrimary {
       "Primary" | "Secondary"
     >
   >;
+
+  /**
+   * VideoLink field in *Hero → Full Hero → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.videolink
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  videolink: prismic.EmbedField;
 }
 
 /**
@@ -520,35 +697,35 @@ export type HeroSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Primary content in *Hero → Simple Hero → Primary*
+ * Primary content in *Hero → Secondary → Primary*
  */
-export interface HeroSliceSimpleHeroPrimary {
+export interface HeroSliceSecondaryPrimary {
   /**
-   * Heading field in *Hero → Simple Hero → Primary*
+   * Heading field in *Hero → Secondary → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.simpleHero.primary.heading
+   * - **API ID Path**: hero.secondary.primary.heading
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField;
 
   /**
-   * Body field in *Hero → Simple Hero → Primary*
+   * Body field in *Hero → Secondary → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.simpleHero.primary.body
+   * - **API ID Path**: hero.secondary.primary.body
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   body: prismic.RichTextField;
 
   /**
-   * CTAs field in *Hero → Simple Hero → Primary*
+   * CTAs field in *Hero → Secondary → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.simpleHero.primary.ctas
+   * - **API ID Path**: hero.secondary.primary.ctas
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   ctas: prismic.Repeatable<
@@ -560,25 +737,104 @@ export interface HeroSliceSimpleHeroPrimary {
       "Primary" | "Secondary"
     >
   >;
+
+  /**
+   * VideoLink field in *Hero → Secondary → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.secondary.primary.videolink
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  videolink: prismic.EmbedField;
 }
 
 /**
- * Simple Hero variation for Hero Slice
+ * Secondary variation for Hero Slice
  *
- * - **API ID**: `simpleHero`
+ * - **API ID**: `secondary`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type HeroSliceSimpleHero = prismic.SharedSliceVariation<
-  "simpleHero",
-  Simplify<HeroSliceSimpleHeroPrimary>,
+export type HeroSliceSecondary = prismic.SharedSliceVariation<
+  "secondary",
+  Simplify<HeroSliceSecondaryPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Hero → With Image → Primary*
+ */
+export interface HeroSliceWithImagePrimary {
+  /**
+   * Heading field in *Hero → With Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.withImage.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *Hero → With Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.withImage.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * CTAs field in *Hero → With Image → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.withImage.primary.ctas
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  ctas: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      "Primary" | "Secondary"
+    >
+  >;
+
+  /**
+   * Image field in *Hero → With Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.withImage.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * With Image variation for Hero Slice
+ *
+ * - **API ID**: `withImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceWithImage = prismic.SharedSliceVariation<
+  "withImage",
+  Simplify<HeroSliceWithImagePrimary>,
   never
 >;
 
 /**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceSimpleHero;
+type HeroSliceVariation =
+  | HeroSliceDefault
+  | HeroSliceSecondary
+  | HeroSliceWithImage;
 
 /**
  * Hero Shared Slice
@@ -590,28 +846,63 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSimpleHero;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *LongParagraph → Default → Primary*
+ */
+export interface LongParagraphSliceDefaultPrimary {
+  /**
+   * Text field in *LongParagraph → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: long_paragraph.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for LongParagraph Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LongParagraphSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LongParagraphSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LongParagraph*
+ */
+type LongParagraphSliceVariation = LongParagraphSliceDefault;
+
+/**
+ * LongParagraph Shared Slice
+ *
+ * - **API ID**: `long_paragraph`
+ * - **Description**: LongParagraph
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type LongParagraphSlice = prismic.SharedSlice<
+  "long_paragraph",
+  LongParagraphSliceVariation
+>;
+
+/**
  * Item in *Pricing → Default → Primary → First Column*
  */
 export interface PricingSliceDefaultPrimaryFirstColumnItem {
   /**
-   * Badge field in *Pricing → Default → Primary → First Column*
+   * Text field in *Pricing → Default → Primary → First Column*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: pricing.default.primary.first_column[].badge
+   * - **API ID Path**: pricing.default.primary.first_column[].text
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  badge: prismic.KeyTextField;
-
-  /**
-   * Price field in *Pricing → Default → Primary → First Column*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: pricing.default.primary.first_column[].price
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  price: prismic.KeyTextField;
+  text: prismic.KeyTextField;
 }
 
 /**
@@ -639,6 +930,36 @@ export interface PricingSliceDefaultPrimary {
   text: prismic.KeyTextField;
 
   /**
+   * Badge field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.badge
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  badge: prismic.KeyTextField;
+
+  /**
+   * Price field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.price
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  price: prismic.KeyTextField;
+
+  /**
+   * Subheading field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
    * First Column field in *Pricing → Default → Primary*
    *
    * - **Field Type**: Group
@@ -648,6 +969,52 @@ export interface PricingSliceDefaultPrimary {
    */
   first_column: prismic.GroupField<
     Simplify<PricingSliceDefaultPrimaryFirstColumnItem>
+  >;
+
+  /**
+   * Button field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Second Column Heading field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.second_column_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  second_column_heading: prismic.KeyTextField;
+
+  /**
+   * Second Column Text field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.second_column_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  second_column_text: prismic.RichTextField;
+
+  /**
+   * Second Button  field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.second_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  second_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
   >;
 }
 
@@ -914,6 +1281,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PrivacyPolicyDocument,
+      PrivacyPolicyDocumentData,
+      PrivacyPolicyDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
@@ -924,9 +1294,12 @@ declare module "@prismicio/client" {
       ComparisonSliceSecondaryPrimaryBeforeItem,
       ComparisonSliceSecondaryPrimaryAfterItem,
       ComparisonSliceSecondaryPrimary,
+      ComparisonSliceSimpleTextPrimaryBeforeItem,
+      ComparisonSliceSimpleTextPrimary,
       ComparisonSliceVariation,
       ComparisonSliceDefault,
       ComparisonSliceSecondary,
+      ComparisonSliceSimpleText,
       FaqSlice,
       FaqSliceDefaultPrimaryAccordionItem,
       FaqSliceDefaultPrimary,
@@ -934,10 +1307,16 @@ declare module "@prismicio/client" {
       FaqSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
-      HeroSliceSimpleHeroPrimary,
+      HeroSliceSecondaryPrimary,
+      HeroSliceWithImagePrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      HeroSliceSimpleHero,
+      HeroSliceSecondary,
+      HeroSliceWithImage,
+      LongParagraphSlice,
+      LongParagraphSliceDefaultPrimary,
+      LongParagraphSliceVariation,
+      LongParagraphSliceDefault,
       PricingSlice,
       PricingSliceDefaultPrimaryFirstColumnItem,
       PricingSliceDefaultPrimary,

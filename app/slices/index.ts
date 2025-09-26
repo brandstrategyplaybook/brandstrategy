@@ -7,6 +7,9 @@ export const components = defineSliceZoneComponents({
   comparison: defineAsyncComponent(() => import("./Comparison/index.vue")),
   faq: defineAsyncComponent(() => import("./Faq/index.vue")),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
+  long_paragraph: defineAsyncComponent(
+    () => import("./LongParagraph/index.vue"),
+  ),
   pricing: defineAsyncComponent(() => import("./Pricing/index.vue")),
   steps: defineAsyncComponent(() => import("./Steps/index.vue")),
   testimonials: defineAsyncComponent(() => import("./Testimonials/index.vue")),

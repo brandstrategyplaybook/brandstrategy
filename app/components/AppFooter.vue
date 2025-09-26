@@ -17,7 +17,7 @@
         <nav class="space-y-2">
           <h3 class="text-lg font-poppins font-semibold text-custom-black dark:text-white">Legal</h3>
           <ul class="space-y-1">
-            <li><NuxtLink to="/privacy" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Privacy Policy</NuxtLink></li>
+            <li><NuxtLink to="/privacy-policy" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Privacy Policy</NuxtLink></li>
             <li><NuxtLink to="/terms" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Terms of Service</NuxtLink></li>
           </ul>
         </nav>
@@ -41,3 +41,14 @@
     </div>
   </footer>
 </template>
+
+<style>
+  html.dark .router-link-active {
+    color: #F68E15!important;
+    font-weight: 500;
+  }
+  html.light .router-link-active {
+    color: #2781F6;
+    font-weight: 500;;
+  }
+</style>

@@ -14,8 +14,6 @@ defineProps(
   ]),
 );
 
-// Use repeatable items if present; otherwise fall back to a group field in primary.
-// const items = slice.items?.length ? slice.items : (slice.primary?.testimonial || [])
 onMounted(() => {
   const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
   tl
@@ -35,6 +33,7 @@ onMounted(() => {
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+	class="my-20"
   >
 	<h3 class="font-poppins text-custom-black text-center mb-8 dark:text-white text-xl md:text-3xl font-bold testimonials__title">{{ slice.primary.heading }}</h3>
 

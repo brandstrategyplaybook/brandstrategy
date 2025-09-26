@@ -100,6 +100,67 @@
 						]
 					}
 				]
+			},
+			"first_column_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "coat",
+				"type": "Text"
+			},
+			"second_column_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "letter",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "simpleText",
+		"primary": {
+			"first_column_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "making",
+				"type": "Text"
+			},
+			"before": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name_list",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "gas",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"second_column_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "hair",
+				"type": "Text"
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Nulla fugiat non qui fugiat ullamco culpa velit eu incididunt."
+						}
+					}
+				]
 			}
 		},
 		"items": [

@@ -20,24 +20,65 @@
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"badge",
+								"text",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "tribe",
-									"type": "Text"
-								}
-							],
-							[
-								"price",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "frame",
+									"value": "necessary",
 									"type": "Text"
 								}
 							]
 						]
 					}
 				]
+			},
+			"badge": {
+				"__TYPE__": "FieldContent",
+				"value": "surface",
+				"type": "Text"
+			},
+			"price": {
+				"__TYPE__": "FieldContent",
+				"value": "warm",
+				"type": "Text"
+			},
+			"subheading": {
+				"__TYPE__": "FieldContent",
+				"value": "shirt",
+				"type": "Text"
+			},
+			"button": {
+				"key": "4bef2382-9498-4c67-9f3e-36033954c50b",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "occasionally"
+				}
+			},
+			"second_column_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "bat",
+				"type": "Text"
+			},
+			"second_column_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Et consectetur fugiat minim ex qui deserunt ipsum ipsum ullamco occaecat eiusmod officia laborum tempor labore. Occaecat ad est qui in fugiat laborum non laborum est. Occaecat nulla non mollit exercitation minim aliqua laborum."
+						}
+					}
+				]
+			},
+			"second_button": {
+				"__TYPE__": "LinkContent",
+				"key": "7ea434e4-2d13-4433-987c-219b0b6b5792",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "have"
+				}
 			}
 		},
 		"items": []

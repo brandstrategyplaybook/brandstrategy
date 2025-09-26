@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { getSliceComponentProps } from "@prismicio/vue"
-import type { Content } from "@prismicio/client"
-import { computed, defineAsyncComponent } from "vue"
+import FullHero from './FullHero.vue'
 
-const props = defineProps(
-  getSliceComponentProps<Content.HeroSlice>(["slice","index","slices","context"])
-)
-const Comp = computed(() => {
-  switch (props.slice.variation) {
-    case "simpleHero":
-      return defineAsyncComponent(() => import("./SimpleHero.vue"))
-    default:
-      return defineAsyncComponent(() => import("./FullHero.vue"))
+defineProps({
+  slice: {
+    type: Object,
+    required: true
   }
 })
 </script>
 
 <template>
-  <component :is="Comp" :slice="slice" />
+  <FullHero :slice="slice" />
 </template>

@@ -25,7 +25,7 @@ const value = ref(true)
             <li v-for="link in settings?.data.navigation" :key="link.key">
             <PrismicLink
                 :field="link"
-                class="inline-flex min-h-11 items-center font-poppins text-brand-blue hover:text-black dark:hover:text-primary transition-colors duration-300 dark:text-white font-medium"
+                class="inline-flex min-h-11 scroll-smooth items-center font-poppins text-brand-blue hover:text-black dark:hover:text-primary transition-colors duration-300 dark:text-white font-medium"
                 :class="{
                     'buttonLink dark:bg-brand-gradient ml-2': link.variant === 'Button',
                 }"

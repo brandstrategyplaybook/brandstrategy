@@ -80,6 +80,13 @@
             "placeholder": ""
           }
         },
+        "first_column_heading": {
+          "type": "Text",
+          "config": {
+            "label": "First Column Heading",
+            "placeholder": ""
+          }
+        },
         "before": {
           "type": "Group",
           "config": {
@@ -96,6 +103,13 @@
             }
           }
         },
+        "second_column_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Second Column Heading",
+            "placeholder": ""
+          }
+        },
         "after": {
           "type": "Group",
           "config": {
@@ -110,6 +124,56 @@
                 }
               }
             }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "simpleText",
+      "name": "Simple Text",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "first_column_heading": {
+          "type": "Text",
+          "config": {
+            "label": "First Column Heading",
+            "placeholder": ""
+          }
+        },
+        "before": {
+          "type": "Group",
+          "config": {
+            "label": "Before",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "second_column_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Second Column Heading",
+            "placeholder": ""
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         }
       },
