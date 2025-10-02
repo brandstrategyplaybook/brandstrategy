@@ -178,6 +178,50 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "listAndImage",
+      "name": "List and Image",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "before": {
+          "type": "Group",
+          "config": {
+            "label": "Before",
+            "repeat": true,
+            "fields": {
+              "name_list": {
+                "type": "Text",
+                "config": {
+                  "label": "Name List",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "is_reversed": {
+          "type": "Boolean",
+          "config": {
+            "label": "Is Reversed",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

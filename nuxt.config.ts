@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/color-mode',
     '@nuxthub/core',
+    '@vee-validate/nuxt'
   ],
 
   colorMode: {

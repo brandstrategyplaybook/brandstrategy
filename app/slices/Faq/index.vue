@@ -31,11 +31,11 @@ const items: AccordionItem[] = computed(() => props.slice.primary.accordion ?? [
 	  class="bg-gradient-to-r from-[#DCEDFE] to-[#EEE9FA] dark:bg-[#6d6d6d0d] dark:bg-none w-full m-auto rounded-2xl pt-8 pb-5 px-5"
 	  :ui="{
 		item: 'bg-white/60 dark:bg-white/5 rounded-xl px-4 md:px-6 mb-4 ',
-		trailingIcon: 'text-brand-blue dark:text-primary',
+		trailingIcon: 'text-primary',
 	   }">
 		<template #default="{ item, index }">
 			<div class="flex items-center gap-3 font-poppins">
-				<span class="text-brand-blue text-base md:text-base py-2 dark:text-primary">
+				<span class=" text-base md:text-base py-2 text-primary">
 					{{ String(index + 1).padStart(2, '0') }}
 				</span>
 				<h3 class="font-poppins text-base md:text-lg text-custom-black dark:text-white/60 font-medium">{{ item.title ?? item.label }}</h3>

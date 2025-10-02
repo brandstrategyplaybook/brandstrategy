@@ -74,7 +74,7 @@ onMounted(() => {
 						</div>
 
 						<!-- Step -->
-						<p class="mb-1 text-sm font-poppins font-medium tracking-wide text-brand-blue dark:text-[#F6B94C]">{{ item.step_order }}</p>
+						<p class="mb-1 text-sm font-poppins tracking-wide font-bold text-custom-gradient">{{ item.step_order }}</p>
 
 						<!-- Title -->
 						<h3 class="mb-2 text-base font-poppins font-semibold text-custom-black dark:text-white">{{ item.heading }}</h3>

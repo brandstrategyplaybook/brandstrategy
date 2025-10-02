@@ -17,8 +17,8 @@
         <nav class="space-y-2">
           <h3 class="text-lg font-poppins font-semibold text-custom-black dark:text-white">Legal</h3>
           <ul class="space-y-1">
-            <li><NuxtLink to="/privacy-policy" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Privacy Policy</NuxtLink></li>
-            <li><NuxtLink to="/terms" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Terms of Service</NuxtLink></li>
+            <li><NuxtLink to="/privacy-policy" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter transition-colors duration-300 hover:text-primary">Privacy Policy</NuxtLink></li>
+            <li><NuxtLink to="/terms-and-conditions" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter transition-colors duration-300 hover:text-primary">Terms of Service</NuxtLink></li>
           </ul>
         </nav>
 
@@ -26,8 +26,8 @@
         <nav class="space-y-2">
           <h3 class="text-lg font-poppins font-semibold text-custom-black dark:text-white">Support</h3>
           <ul class="space-y-1">
-            <li><NuxtLink to="/contact" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Contact Us</NuxtLink></li>
-            <li><NuxtLink to="/partners" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter hover:text-brand-blue transition-colors duration-300 dark:hover:text-primary">Agency Partners</NuxtLink></li>
+            <li><NuxtLink to="/contact" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter transition-colors duration-300 hover:text-primary">Contact Us</NuxtLink></li>
+            <li><NuxtLink to="/partners" class="text-base text-[#2E3754] dark:text-white/70 mt-5 font-inter transition-colors duration-300 hover:text-primary">Agency Partners</NuxtLink></li>
           </ul>
         </nav>
       </div>
@@ -43,12 +43,8 @@
 </template>
 
 <style>
-  html.dark .router-link-active {
+  .router-link-active {
     color: #F68E15!important;
     font-weight: 500;
-  }
-  html.light .router-link-active {
-    color: #2781F6;
-    font-weight: 500;;
   }
 </style>

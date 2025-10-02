@@ -72,13 +72,18 @@
 				]
 			},
 			"second_button": {
-				"__TYPE__": "LinkContent",
 				"key": "7ea434e4-2d13-4433-987c-219b0b6b5792",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://twitter.com",
 					"text": "have"
 				}
+			},
+			"strikethrough_price": {
+				"__TYPE__": "FieldContent",
+				"value": "identity",
+				"type": "Text"
 			}
 		},
 		"items": []

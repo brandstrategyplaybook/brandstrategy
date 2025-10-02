@@ -25,18 +25,18 @@ const route = useRoute()
     >
     <div class="mx-auto max-w-7xl px-6 py-16">
       <div v-if="p.badge" class="relative inline-flex items-center hero__badge" v-show="slice.variation === 'default'">
-        <AbstractLine class="absolute -left-7 -top-6 h-10 w-10 text-blue-500 pointer-events-none animate-bounce"/>
-        <p class="inline-block bg-[#E9EBFC] text-brand-blue dark:text-white border-0 p-2.5 rounded-lg dark:bg-white/[.02] text-xs font-inter font-semibold">
+        <AbstractLine class="absolute -left-7 -top-6 h-10 w-10  pointer-events-none animate-bounce"/>
+        <p class="inline-block bg-[#E9EBFC] text-primary dark:text-white border-0 p-2.5 rounded-lg dark:bg-white/[.02] text-xs font-inter font-semibold">
           {{ p.badge }}
         </p>
       </div>
 
       <PrismicRichText :field="p.heading"  
         wrapper="div"
-        class="mt-3 text-4xl font-poppins text-custom-black dark:text-white md:text-6xl font-bold"
+        class="mt-3 text-4xl font-poppins text-custom-black dark:text-white md:text-6xl font-bold mb-3"
         :class="{
           'text-xl! md:text-3xl!': slice.variation !== 'default',
-          'hero__heading': route.name !== 'privacy-policy'
+          'hero__heading': route.name !== 'privacy-policy' && route.name !== 'terms-and-conditions'
         }" 
       />
 
@@ -44,20 +44,21 @@ const route = useRoute()
         v-if="p.body"
         :field="p.body"
         wrapper="p"
-        class="mt-3 text-sm md:text-xl opacity-80 text-[#2E3754] dark:text-[#A1A4B5] fon-inter fullHeroParagraph leading-relaxed"
+        class="mt-3 text-sm md:text-xl opacity-80 text-[#2E3754] dark:text-[#A1A4B5] fon-inter fullHeroParagraph leading-relaxed md:w-3/4 md:m-auto"
         :class="{
           'text-xs! md:text-base! w-full lg:w-[80%] m-auto': slice.variation !== 'default',
           'hero__body': route.name !== 'privacy-policy'
         }"
       />
 
-      <div class="mt-6 flex flex-wrap justify-center gap-3 hero__button" v-if="p.ctas && p.ctas.length > 0">
+      <div class="mt-6 flex flex-wrap justify-center gap-4 hero__button" v-if="p.ctas && p.ctas.length > 0">
+
         <PrismicLink
           v-for="(cta) in slice.primary.ctas"
           :key="cta.key"
           :class="{
-            'buttonLink dark:bg-brand-gradient ml-2 dark:hover:opacity-85': cta.variant === 'Primary',
-            'text-brand-blue dark:text-custom-gradient border font-poppins border-brand-blue dark:border-[#F68E15] rounded-[8px] px-4 py-3 transition-colors dark:hover:opacity-85': cta.variant === 'Secondary',
+            'buttonLink bg-brand-gradient ml-2 text-white transition duration-500 hover:scale-110': cta.variant === 'Primary',
+            'text-custom-gradient font-medium dark:text-custom-gradient border font-poppins border-[#F68E15] rounded-[8px] px-4 py-3 transition duration-500 hover:scale-110': cta.variant === 'Secondary',
           }"
           :field="cta"
         />
@@ -69,6 +70,7 @@ const route = useRoute()
       :class="{'video-secondary': slice.variation == 'secondary'}" />
 
     <PrismicImage :field="slice.primary.image" 
+      v-if="slice.primary.image"
       class="hero__media w-full lg:w-3/4 rounded-2xl m-auto" />
   </section>
 </template>

@@ -5,7 +5,7 @@
       <img
         src="/images/money-back.png"
         alt="Money Back 14 Day"
-        class="absolute left-1/2 top-[-60px] -translate-x-1/2 h-24 w-24 md:h-28 md:w-28 animate-pulse"
+        class="absolute left-1/2 top-[-60px] -translate-x-1/2 h-24 w-24 md:h-28 md:w-28"
       />
 
       <!-- Card -->

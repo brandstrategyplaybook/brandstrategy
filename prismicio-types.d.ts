@@ -255,10 +255,76 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+type TermsAndConditionsDocumentDataSlicesSlice = HeroSlice | LongParagraphSlice;
+
+/**
+ * Content for Terms and Conditions documents
+ */
+interface TermsAndConditionsDocumentData {
+  /**
+   * Slice Zone field in *Terms and Conditions*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<TermsAndConditionsDocumentDataSlicesSlice> /**
+   * Meta Title field in *Terms and Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: terms_and_conditions.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Terms and Conditions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: terms_and_conditions.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Terms and Conditions*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: terms_and_conditions.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Terms and Conditions document from Prismic
+ *
+ * - **API ID**: `terms_and_conditions`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TermsAndConditionsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TermsAndConditionsDocumentData>,
+    "terms_and_conditions",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | PageDocument
   | PrivacyPolicyDocument
-  | SettingsDocument;
+  | SettingsDocument
+  | TermsAndConditionsDocument;
 
 /**
  * Item in *Comparison → Default → Primary → Before*
@@ -330,6 +396,21 @@ export interface ComparisonSliceSimpleTextPrimaryBeforeItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: comparison.simpleText.primary.before[].name_list
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name_list: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → List and Image → Primary → Before*
+ */
+export interface ComparisonSliceListAndImagePrimaryBeforeItem {
+  /**
+   * Name List field in *Comparison → List and Image → Primary → Before*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.listAndImage.primary.before[].name_list
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   name_list: prismic.KeyTextField;
@@ -524,12 +605,64 @@ export type ComparisonSliceSimpleText = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Comparison → List and Image → Primary*
+ */
+export interface ComparisonSliceListAndImagePrimary {
+  /**
+   * Before field in *Comparison → List and Image → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.listAndImage.primary.before[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  before: prismic.GroupField<
+    Simplify<ComparisonSliceListAndImagePrimaryBeforeItem>
+  >;
+
+  /**
+   * Image field in *Comparison → List and Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.listAndImage.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Is Reversed field in *Comparison → List and Image → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: comparison.listAndImage.primary.is_reversed
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_reversed: prismic.BooleanField;
+}
+
+/**
+ * List and Image variation for Comparison Slice
+ *
+ * - **API ID**: `listAndImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ComparisonSliceListAndImage = prismic.SharedSliceVariation<
+  "listAndImage",
+  Simplify<ComparisonSliceListAndImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Comparison*
  */
 type ComparisonSliceVariation =
   | ComparisonSliceDefault
   | ComparisonSliceSecondary
-  | ComparisonSliceSimpleText;
+  | ComparisonSliceSimpleText
+  | ComparisonSliceListAndImage;
 
 /**
  * Comparison Shared Slice
@@ -920,6 +1053,16 @@ export interface PricingSliceDefaultPrimary {
   heading: prismic.KeyTextField;
 
   /**
+   * Strikethrough Price field in *Pricing → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pricing.default.primary.strikethrough_price
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  strikethrough_price: prismic.KeyTextField;
+
+  /**
    * Text field in *Pricing → Default → Primary*
    *
    * - **Field Type**: Text
@@ -1286,6 +1429,9 @@ declare module "@prismicio/client" {
       PrivacyPolicyDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      TermsAndConditionsDocument,
+      TermsAndConditionsDocumentData,
+      TermsAndConditionsDocumentDataSlicesSlice,
       AllDocumentTypes,
       ComparisonSlice,
       ComparisonSliceDefaultPrimaryBeforeItem,
@@ -1296,10 +1442,13 @@ declare module "@prismicio/client" {
       ComparisonSliceSecondaryPrimary,
       ComparisonSliceSimpleTextPrimaryBeforeItem,
       ComparisonSliceSimpleTextPrimary,
+      ComparisonSliceListAndImagePrimaryBeforeItem,
+      ComparisonSliceListAndImagePrimary,
       ComparisonSliceVariation,
       ComparisonSliceDefault,
       ComparisonSliceSecondary,
       ComparisonSliceSimpleText,
+      ComparisonSliceListAndImage,
       FaqSlice,
       FaqSliceDefaultPrimaryAccordionItem,
       FaqSliceDefaultPrimary,

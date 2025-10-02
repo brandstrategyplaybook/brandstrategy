@@ -34,7 +34,7 @@ defineProps(
       <div class="flex flex-col md:flex-row gap-8 my-10">
       
           <!-- LEFT: Pricing card -->
-          <div class="relative flex-1 pricing-bg-card rounded-2xl p-8 md:p-10">
+          <div class="relative flex-1 pricing-bg-card rounded-2xl p-8 md:p-10">              
               <!-- badge -->
               <span 
                 v-if="slice.primary.badge" 
@@ -43,6 +43,13 @@ defineProps(
               </span>
 
               <div class="h-full">
+                    
+                <!-- strikethrough price -->
+                <div class="my-3 font-poppins">
+                  <div class="text-2xl md:text-3xl font-bold leading-none font-poppins text-custom-black dark:text-white line-through" v-if="slice.primary.badge">{{ slice.primary.strikethrough_price }}
+                  </div>
+                </div>
+                
                 <!-- price -->
                 <div class="my-3 font-poppins">
                   <div class="text-5xl md:text-5xl font-bold leading-none font-poppins text-custom-black dark:text-white" v-if="slice.primary.badge">{{ slice.primary.price }}
@@ -66,11 +73,28 @@ defineProps(
                 </template>
 
                 <!-- CTA -->
-                <button
-                  class="mt-6 inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold buttonLink w-full! dark:bg-brand-gradient transition"
-                  v-if="slice.primary.button">
-                  <PrismicLink :field="slice.primary.button" />
-                </button>
+                  <button
+                    v-if="slice.primary.button"
+                    class="group relative inline-flex h-12 items-center justify-center overflow-hidden 
+                          rounded-xl buttonLink bg-brand-gradient ml-2 text-white font-semibold
+                          transition hover:scale-110 w-full! mt-6"
+                  >
+                      <PrismicLink 
+                        :field="slice.primary.button" 
+                        class="relative z-10"
+                      >
+                        {{ slice.primary.button.text }}
+                      </PrismicLink>
+
+                      <!-- Shine effect -->
+                      <div 
+                        class="absolute inset-0 flex h-full w-full justify-center 
+                              [transform:skew(-12deg)_translateX(-100%)] 
+                              group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]"
+                      >
+                      <div class="relative h-full w-8 bg-white/20"></div>
+                    </div>
+                  </button>
               </div>
           </div>
 
@@ -87,14 +111,26 @@ defineProps(
                 <PrismicText :field="slice.primary.second_column_text" />
               </p>
 
+              
               <button
-              class="mt-6 w-full text-brand-blue dark:text-custom-gradient border font-poppins  border-brand-blue dark:border-[#F68E15] rounded-[8px] px-4 py-3"
+              class="text-custom-gradient dark:text-custom-gradient border font-poppins  
+              group relative inline-flex h-12 items-center justify-center overflow-hidden 
+                          rounded-xl ml-2 text-white font-medium
+                          transition hover:scale-110 w-full! mt-6
+              border-[#F68E15] px-4 py-3"
               v-if="slice.primary.second_button">
-                <PrismicLink :field="slice.primary.second_button" />
+                <PrismicLink :field="slice.primary.second_button" class="" />
+                <!-- Shine effect -->
+                <div class="absolute inset-0 flex h-full w-full justify-center 
+                              [transform:skew(-12deg)_translateX(-100%)] 
+                              group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]"
+                      >
+                      <div class="relative h-full w-8 bg-primary/20"></div>
+                </div>
               </button>
           </div>
       </div>
-      <p class="text-center text-brand-blue dark:text-custom-gradient text-xl  font-poppins font-semibold ">Apply for scholarship pricing</p>
+      <p class="text-center text-custom-gradient text-xl font-poppins font-semibold ">Apply for scholarship pricing</p>
    </div>
   </section>
 </template>

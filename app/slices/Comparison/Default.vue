@@ -60,7 +60,7 @@ onMounted(() => {
         <PrismicLink
           v-if="slice.primary.cta"
           :field="slice.primary.cta"
-          class="text-brand-blue dark:text-custom-gradient border font-poppins border-brand-blue dark:border-[#F68E15] rounded-[8px] px-4 py-3 inline-block"
+          class="text-custom-gradient font-medium border font-poppins border-[#F68E15] rounded-[8px] px-4 py-3 inline-block transition duration-300 hover:scale-110"
         >
           {{ slice.primary.cta_label || 'Learn more' }}
         </PrismicLink>

@@ -19,6 +19,13 @@
             "placeholder": ""
           }
         },
+        "strikethrough_price": {
+          "type": "Text",
+          "config": {
+            "label": "Strikethrough Price",
+            "placeholder": ""
+          }
+        },
         "text": {
           "type": "Text",
           "config": {

@@ -22,9 +22,6 @@ useHead({
 
 
 <template>
-  <!-- <PrismicRichText :field="slice.primary.heading" />
-  <PrismicRichText :field="slice.primary.body" /> -->
-  <h1>error</h1>
   <section class="my-10 px-4 md:px-6" :class="['page', page?.uid ? `page--${page.uid}` : '']">
     <SliceZone
       wrapper="main"
