@@ -4,6 +4,11 @@ import { repositoryName, apiEndpoint } from './slicemachine.config.json';
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  ssr: true,
+  nitro: {
+    preset: 'netlify'
+  },
+
   app: {
     head: {
       title: 'Prismic + Nuxt Minimal Starter',
@@ -28,7 +33,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/ui',
     '@nuxtjs/color-mode',
-    '@nuxthub/core',
     '@vee-validate/nuxt'
   ],
 
