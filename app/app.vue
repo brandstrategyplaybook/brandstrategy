@@ -1,4 +1,9 @@
 <script setup lang="ts">
+
+import FlipBookModal from '~/components/FlipBookModal.vue'
+import { useFlipBookModal } from '~/composables/useFlipBookModal'
+const { isOpen } = useFlipBookModal()
+
 const prismic = usePrismic()
 
 const { data: settings } = await useAsyncData('settings', () =>
@@ -20,6 +25,7 @@ useSeoMeta({
         <div class="max-w-7xl mx-auto px-4">
             <AppHeader :settings="settings" />
             <NuxtPage />
+            <FlipBookModal v-if="isOpen" />
             <AppFooter/>
         </div>
     </div>

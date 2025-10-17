@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import gsap from 'gsap';
+
+import { useFlipBookModal } from '~/composables/useFlipBookModal'
+const { open } = useFlipBookModal()
+
 const props = defineProps<{ slice: any }>()
 const p = props.slice.primary
 
@@ -52,8 +56,22 @@ const route = useRoute()
       />
 
       <div class="mt-6 flex flex-wrap justify-center gap-4 hero__button" v-if="p.ctas && p.ctas.length > 0">
-
-        <PrismicLink
+        <template v-for="cta in slice.primary.ctas" :key="cta.key">
+          <PrismicLink
+            v-if="cta.variant === 'Primary'"
+            :field="cta"
+            class="buttonLink bg-brand-gradient ml-2 text-white transition duration-500 hover:scale-110"
+          />
+          <button
+            v-else
+            type="button"
+            @click="open"
+            class="text-custom-gradient cursor-pointer font-medium dark:text-custom-gradient border font-poppins border-[#F68E15] rounded-[8px] px-4 py-3 transition duration-500 hover:scale-110"
+          >
+            {{ cta.text || 'See an Example' }}
+          </button>
+        </template>
+        <!-- <PrismicLink
           v-for="(cta) in slice.primary.ctas"
           :key="cta.key"
           :class="{
@@ -61,7 +79,7 @@ const route = useRoute()
             'text-custom-gradient font-medium dark:text-custom-gradient border font-poppins border-[#F68E15] rounded-[8px] px-4 py-3 transition duration-500 hover:scale-110': cta.variant === 'Secondary',
           }"
           :field="cta"
-        />
+        /> -->
       </div>
     </div>
 
