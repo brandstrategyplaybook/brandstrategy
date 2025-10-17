@@ -1,13 +1,36 @@
 <script lang="ts" setup>
+import { header } from "#build/ui";
 import type { Content } from "@prismicio/client";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 defineProps<{ settings?: Content.SettingsDocument }>()
 
-const value = ref(true)
+const headerEl = ref<HTMLElement | null>(null);
+const scrolled = ref(false);
+
+function handleScroll(){
+    if (!headerEl.value) return;
+    scrolled.value = window.scrollY > headerEl.value.offsetHeight;
+}
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-  <header class="p-4 md:px-6 md:pb-2 md:pt-4 border-b border-[#DFE4FE]  dark:border-[#FFFFFF1C]">
+  <header 
+    ref="headerEl"
+    class="p-4 md:px-6 md:pb-2 md:pt-4 border-b border-[#DFE4FE] 
+    bg-white dark:bg-transparent
+    dark:border-[#FFFFFF1C] sticky top-0 z-30 transition-colors duration-500"
+        :class="scrolled
+        ? 'bg-white dark:!bg-[#0f172b]'
+        : 'bg-white dark:bg-transparent'">
     <nav
       class="mx-auto flex max-w-7xl justify-between py-2 md:items-center font-medium text-white"
       aria-label="Main"

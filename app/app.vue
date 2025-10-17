@@ -22,12 +22,15 @@ useSeoMeta({
 <template>
   <UApp>
     <div class="dark:glow">
-        <div class="max-w-7xl mx-auto px-4">
-            <AppHeader :settings="settings" />
-            <NuxtPage />
-            <FlipBookModal v-if="isOpen" />
-            <AppFooter/>
+      <div class="max-w-7xl mx-auto">
+        <AppHeader :settings="settings" />
+
+        <div class="px-4">
+          <NuxtPage />
+          <FlipBookModal v-if="isOpen" />
+          <AppFooter />
         </div>
+      </div>
     </div>
   </UApp>
 </template>

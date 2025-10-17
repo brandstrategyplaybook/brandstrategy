@@ -181,43 +181,42 @@
     },
     {
       "id": "listAndImage",
-      "name": "List and Image",
+      "name": "Double Column List",
       "docURL": "...",
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "before": {
+        "left_list": {
           "type": "Group",
           "config": {
-            "label": "Before",
+            "label": "Left List",
             "repeat": true,
             "fields": {
-              "name_list": {
+              "item_name": {
                 "type": "Text",
                 "config": {
-                  "label": "Name List",
+                  "label": "Item Name",
                   "placeholder": ""
                 }
               }
             }
           }
         },
-        "image": {
-          "type": "Image",
+        "right_list": {
+          "type": "Group",
           "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
-        "is_reversed": {
-          "type": "Boolean",
-          "config": {
-            "label": "Is Reversed",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": false
+            "label": "Right List",
+            "repeat": true,
+            "fields": {
+              "item_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Item Name",
+                  "placeholder": ""
+                }
+              }
+            }
           }
         }
       },

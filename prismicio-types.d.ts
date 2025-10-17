@@ -402,18 +402,33 @@ export interface ComparisonSliceSimpleTextPrimaryBeforeItem {
 }
 
 /**
- * Item in *Comparison → List and Image → Primary → Before*
+ * Item in *Comparison → Double Column List → Primary → Left List*
  */
-export interface ComparisonSliceListAndImagePrimaryBeforeItem {
+export interface ComparisonSliceListAndImagePrimaryLeftListItem {
   /**
-   * Name List field in *Comparison → List and Image → Primary → Before*
+   * Item Name field in *Comparison → Double Column List → Primary → Left List*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: comparison.listAndImage.primary.before[].name_list
+   * - **API ID Path**: comparison.listAndImage.primary.left_list[].item_name
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  name_list: prismic.KeyTextField;
+  item_name: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Comparison → Double Column List → Primary → Right List*
+ */
+export interface ComparisonSliceListAndImagePrimaryRightListItem {
+  /**
+   * Item Name field in *Comparison → Double Column List → Primary → Right List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comparison.listAndImage.primary.right_list[].item_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  item_name: prismic.KeyTextField;
 }
 
 /**
@@ -605,45 +620,36 @@ export type ComparisonSliceSimpleText = prismic.SharedSliceVariation<
 >;
 
 /**
- * Primary content in *Comparison → List and Image → Primary*
+ * Primary content in *Comparison → Double Column List → Primary*
  */
 export interface ComparisonSliceListAndImagePrimary {
   /**
-   * Before field in *Comparison → List and Image → Primary*
+   * Left List field in *Comparison → Double Column List → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: comparison.listAndImage.primary.before[]
+   * - **API ID Path**: comparison.listAndImage.primary.left_list[]
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  before: prismic.GroupField<
-    Simplify<ComparisonSliceListAndImagePrimaryBeforeItem>
+  left_list: prismic.GroupField<
+    Simplify<ComparisonSliceListAndImagePrimaryLeftListItem>
   >;
 
   /**
-   * Image field in *Comparison → List and Image → Primary*
+   * Right List field in *Comparison → Double Column List → Primary*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: comparison.listAndImage.primary.image
-   * - **Documentation**: https://prismic.io/docs/fields/image
+   * - **API ID Path**: comparison.listAndImage.primary.right_list[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  image: prismic.ImageField<never>;
-
-  /**
-   * Is Reversed field in *Comparison → List and Image → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: comparison.listAndImage.primary.is_reversed
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
-   */
-  is_reversed: prismic.BooleanField;
+  right_list: prismic.GroupField<
+    Simplify<ComparisonSliceListAndImagePrimaryRightListItem>
+  >;
 }
 
 /**
- * List and Image variation for Comparison Slice
+ * Double Column List variation for Comparison Slice
  *
  * - **API ID**: `listAndImage`
  * - **Description**: Default
@@ -1442,7 +1448,8 @@ declare module "@prismicio/client" {
       ComparisonSliceSecondaryPrimary,
       ComparisonSliceSimpleTextPrimaryBeforeItem,
       ComparisonSliceSimpleTextPrimary,
-      ComparisonSliceListAndImagePrimaryBeforeItem,
+      ComparisonSliceListAndImagePrimaryLeftListItem,
+      ComparisonSliceListAndImagePrimaryRightListItem,
       ComparisonSliceListAndImagePrimary,
       ComparisonSliceVariation,
       ComparisonSliceDefault,

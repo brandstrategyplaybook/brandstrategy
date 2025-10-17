@@ -51,19 +51,22 @@ onMounted(() => {
     :data-slice-variation="slice.variation"
     class="comparison-secondary"
   >
-    <div class="max-w-7xl rounded-2xl mb-20 p-6 md:px-12 bg-white dark:bg-transparent">
+    <div class="max-w-7xl rounded-2xl my-10 mb-20 py-6 md:px-12 bg-white border border-[#F1F0F3] dark:border-0 dark:bg-[#1828591f] dark:footer-flow comparison__title">
       <!-- Two columns variant -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 hero__media">
-        <div>
-          <ul class="flex flex-col gap-3 text-sm text-[#5F5D73] dark:text-white/70 leading-loose font-medium list-disc list-inside">
-            <li v-for="(item, i) in slice.primary.before" :key="i" class="list-item dark:footer-flow items-center gap-3 rounded-2xl border border-white/10 light-bg-card-steps py-2 px-6">
-              <span>{{ item.name_list }}</span>
+        <div class="comparison__card flex-1 light-bg-card-comparison dark:bg-card-comparison rounded-2xl border border-white/10 p-6">
+          <ul class="flex flex-col gap-3 text-sm text-[#5F5D73] dark:text-white/70 leading-loose list-disc px-6">
+            <li v-for="(item, i) in slice.primary.left_list" :key="i" class="list-item gap-3">
+              <span>{{ item.item_name }}</span>
             </li>
           </ul>
         </div>
-
-        <div class="w-full lg:w-3/4 rounded-2xl m-auto">
-            <PrismicImage :field="slice.primary.image" class="rounded-2xlg" />
+        <div class="comparison__card flex-1 light-bg-card-comparison dark:bg-card-comparison rounded-2xl border border-white/10 p-6">
+          <ul class="flex flex-col gap-3 text-sm text-[#5F5D73] dark:text-white/70 leading-loose list-disc px-6">
+            <li v-for="(item, i) in slice.primary.right_list" :key="i" class="list-item gap-3">
+              <span>{{ item.item_name }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
