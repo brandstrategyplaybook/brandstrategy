@@ -26,6 +26,7 @@ useSeoMeta({
         <AppHeader :settings="settings" />
 
         <div class="px-4">
+          <ConsentBanner />
           <NuxtPage />
           <FlipBookModal v-if="isOpen" />
           <AppFooter />

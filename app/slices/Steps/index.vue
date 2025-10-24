@@ -69,7 +69,7 @@ onMounted(() => {
 				<div class="flex flex-col flex-wrap gap-5 xl:gap-0 xl:justify-between md:flex-row">
 					<article class="relative w-full md:w-[48%] xl:w-[24%] text-center rounded-2xl border border-white/10 light-bg-card-steps p-6" v-for="item in slice.primary.tiles">
 						<!-- Icon -->
-						<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-white dark:bg-white/10">
+						<div class="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl text-primary dark:text-white bg-white dark:bg-white/10">
 							<UIcon :name="item.svg " class="size-10" />
 						</div>
 

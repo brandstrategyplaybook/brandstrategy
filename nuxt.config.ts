@@ -33,7 +33,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/ui',
     '@nuxtjs/color-mode',
-    '@vee-validate/nuxt'
+    '@vee-validate/nuxt',
+    'nuxt-gtag',
   ],
 
   colorMode: {
@@ -60,7 +61,10 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [{
       prefix: 'custom',
-      dir: './app/assets/icons'
+      dir: './app/assets/icons',
+      icons: {
+        'guided-prompts': { body: '<path fill="currentColor .../>' },
+      }
     }]
   },
 
@@ -80,6 +84,23 @@ export default defineNuxtConfig({
         },
       ]
     }
+  },
+
+  // GA4
+  gtag: {
+    initMode: 'manual', 
+    enabled: true,            // don't load gtag.js until we say so
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    initCommands: [
+      // Consent Mode v2 defaults (deny until user grants)
+      ['consent', 'default', {
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+      }],
+    ],
   },
 
   compatibilityDate: '2025-07-16',
